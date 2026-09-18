@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>ShoPperZ</title><link rel="stylesheet" href="css/style.css"></head><body>
+<header class="header">
+ <div class="container">
+  <a class="logo" href="index.html">ShoPper<span>Z</span></a>
+  <nav class="navbar">
+   <a href="index.html">Home</a><a href="products.html">Products</a><a href="cart.html">Cart</a>
+   <a href="login.html">Login</a><a href="register.html">Register</a>
+  </nav>
+  <div class="header-actions">
+   <div class="search-box"><input id="globalSearch" placeholder="Search products..."><span>⌕</span></div>
+   <a class="icon-btn" href="cart.html" aria-label="Cart">🛒<span class="cart-count" data-cart-count>0</span></a>
+   <button class="hamburger" aria-label="Menu">☰</button>
+  </div>
+ </div>
+ <div class="mobile-menu">
+  <a href="index.html">Home</a><a href="products.html">Products</a><a href="cart.html">Cart</a><a href="login.html">Login</a><a href="register.html">Register</a>
+ </div>
+</header>
+
+<section class="hero"><div class="slider" id="slider">
+ <div class="slide"><div class="slide-content"><h1>Fill your basket with the good stuff</h1><p>Discover fashion, electronics and home products at ShoPperZ.</p><a class="btn light" href="products.html">Shop Now</a></div></div>
+ <div class="slide"><div class="slide-content"><h1>Fresh styles for every day</h1><p>Find products that match your lifestyle.</p><a class="btn light" href="products.html">Explore Products</a></div></div>
+ <div class="slide"><div class="slide-content"><h1>Smart shopping made simple</h1><p>Search, add to cart and checkout with ease.</p><a class="btn light" href="products.html">Start Shopping</a></div></div>
+</div><button class="slide-arrow prev" id="prev">‹</button><button class="slide-arrow next" id="next">›</button><div class="slider-dots" id="sliderDots"></div></section>
+<section class="container"><div class="section-title"><h2>Shop by Category</h2><p>Choose a category and explore our collection.</p></div>
+<div class="categories"><button class="category-chip active" data-filter="all">All</button><button class="category-chip" data-filter="fashion">Fashion</button><button class="category-chip" data-filter="electronics">Electronics</button><button class="category-chip" data-filter="shoes">Shoes</button><button class="category-chip" data-filter="home">Home</button><button class="category-chip" data-filter="accessories">Accessories</button></div>
+<div class="products-grid" id="homeProducts"></div></section>
+<section class="container" style="padding:20px 0 30px"><div class="info-grid"><div class="info-box"><h2>Why ShoPperZ?</h2><p>Simple shopping experience with product search, category filters, cart management and checkout.</p></div><div class="info-box"><h2>Easy & Responsive</h2><p>The website works on desktop, tablet and mobile screens.</p></div></div></section>
+
+<footer class="footer">
+ <div class="footer-container">
+  <div class="footer-about">
+   <div class="footer-logo">ShoPperZ</div>
+   <div class="footer-title">Connect with us</div>
+   <div class="social-icons"><a href="#">f</a><a href="#">in</a><a href="#">▶</a><a href="#">◎</a><a href="#">♥</a></div>
+  </div>
+  <div class="footer-column"><h3>Products</h3><a href="products.html">Sell your products</a><a href="products.html">Advertise</a><a href="products.html">Pricing</a><a href="products.html">Product business</a></div>
+  <div class="footer-column"><h3>Services</h3><a href="#">Returns</a><a href="#">Cash back</a><a href="#">Affiliate marketing</a><a href="#">Others</a></div>
+  <div class="footer-column"><h3>Company</h3><a href="#">Company</a><a href="#">Career</a><a href="#">Affiliate</a><a href="contact.html">Support</a></div>
+ </div>
+ <div class="footer-bottom">Copyright © <strong>ShoPperZ</strong> 2021–2028</div>
+</footer>
+
+<script src="js/products.js"></script><script src="js/cart.js"></script><script src="js/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const slider=document.querySelector("#slider"),slides=[...slider.children],dots=document.querySelector("#sliderDots");let cur=0,timer;
+ slides.forEach((_,i)=>{let b=document.createElement("button");b.onclick=()=>go(i);dots.appendChild(b)});
+ function go(i){cur=(i+slides.length)%slides.length;slider.style.transform=`translateX(-${cur*100}%)`;[...dots.children].forEach((b,j)=>b.classList.toggle("is-active",j===cur));clearInterval(timer);timer=setInterval(()=>go(cur+1),5000)}
+ document.querySelector("#prev").onclick=()=>go(cur-1);document.querySelector("#next").onclick=()=>go(cur+1);go(0);
+ const grid=document.querySelector("#homeProducts");grid.innerHTML=PRODUCTS.slice(0,8).map(productCard).join("");
+ document.querySelectorAll(".category-chip").forEach(c=>c.onclick=()=>{document.querySelectorAll(".category-chip").forEach(x=>x.classList.remove("active"));c.classList.add("active");let f=c.dataset.filter;grid.innerHTML=PRODUCTS.filter(p=>f==="all"||p.category===f).map(productCard).join("")});
+});
+</script></body></html>
