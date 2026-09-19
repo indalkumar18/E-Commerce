@@ -1,0 +1,28 @@
+# ShoPperZ Complete E-Commerce Website
+
+## Features
+- Dark header and footer design
+- Responsive mobile menu
+- Hero slider with arrows and dots
+- Product categories
+- Product search and category filter
+- Product details page
+- Add to cart
+- LocalStorage cart
+- Increase/decrease quantity
+- Remove products
+- Cart total and shipping
+- Checkout form
+- Demo login/register
+- Contact form
+- Responsive layout
+
+## Run
+1. Extract the ZIP.
+2. Open the folder in VS Code.
+3. Install/use Live Server extension.
+4. Right-click `index.html`.
+5. Select **Open with Live Server**.
+
+## Important
+This is a frontend/demo e-commerce project. Login, checkout and orders use browser localStorage. It does not include a real database, real payment gateway, or secure server authentication.
